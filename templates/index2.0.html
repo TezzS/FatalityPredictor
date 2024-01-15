@@ -1,0 +1,198 @@
+<html>
+<head>
+<title> Fatality Predictor   </title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<style>
+  body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .custom-container {
+      width: 400px;
+    }
+</style>
+</head>
+<body>
+<div class="custom-container">
+<h1 align="center"> Machine Learning Model Deployment</h1>
+<br>
+<form align="justify" action="/result" method="post" style="border:black;width:500px;height:45sp0px;padding:20px; border-width:2px; border-style:solid;">
+  <h1>General Information</h1>
+
+    <h2>Place and Time</h2>
+    <input type = "text", name ="lati", placeholder= "LATITUDE", required="required"/> 
+    <br><br>
+    <input type = "text", name ="longi", placeholder= "LONGITUDE", required="required"/> 
+    <br><br>
+    <input type = "text", name ="DISTRICT", placeholder= "District", required="required"/> 
+    <br><br>
+    <input type = "text", name ="Hood", placeholder= "HOOD_158", required="required"/> 
+    <br><br>
+    <input type = "text", name ="Day", placeholder= "Day", required="required"/>
+    <br><br>
+    <input type = "text", name ="DOW", placeholder= "Day of Week", required="required"/>
+    <br><br>
+    <input type = "text", name ="Min", placeholder= "MINUTE", required="required"/>
+    <br><br>
+    <input type = "text", name ="Hr", placeholder= "HOUR", required="required"/>
+    <br><br>
+    <input type = "text", name ="Mon", placeholder= "MONTH", required="required"/>
+    <br><br>
+    <input type = "text", name ="Year", placeholder= "YEAR", required="required"/>
+    <br><br>
+
+<div class="row">
+  <h1>Involement Information</h1>
+  <div class="row">
+    <div class="col-8">Automobile:</div>
+    <div class="col-4">
+      <select class="form-select" name="Auto" aria-label="Automobile Option">
+        <option value=0>No</option>
+        <option value=1>Yes</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-8">Cyclist:</div>
+    <div class="col-4">
+      <select class="form-select" name="Cycl" aria-label="Cyclist Option">
+        <option value="0">No</option>
+        <option value="1">Yes</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-8">Emergency Vehicle:</div>
+    <div class="col-4">
+      <select class="form-select" name="EMERG_VEH" aria-label="Emergency Vehicle Option">
+        <option value="0">No</option>
+        <option value="1">Yes</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-8">Motorcycle:</div>
+    <div class="col-4">
+      <select class="form-select" name="Mot" aria-label="Motorcycle Option">
+        <option value="0">No</option>
+        <option value="1">Yes</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-8">Passenger:</div>
+    <div class="col-4">
+      <select class="form-select" name="Pass" aria-label="Passenger Option">
+        <option value="0">No</option>
+        <option value="1">Yes</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-8">Pedestrian:</div>
+    <div class="col-4">
+      <select class="form-select" name="Ped" aria-label="Pedestrian Option">
+        <option value="0">No</option>
+        <option value="1">Yes</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-8">Was a specially able person involved?</div>
+    <div class="col-4">
+      <select class="form-select" name="Dis" aria-label="Signal break question">
+        <option value="0">No</option>
+        <option value="1">Yes</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-8">Transit City Vehicle:</div>
+    <div class="col-4">
+      <select class="form-select" name="TRSN" aria-label="Transit City Vehicle Option">
+        <option value="0">No</option>
+        <option value="1">Yes</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-8">Truck:</div>
+    <div class="col-4">
+      <select class="form-select" name="Tr" aria-label="Truck Option">
+        <option value="0">No</option>
+        <option value="1">Yes</option>
+      </select>
+    </div>
+  </div>
+  
+</div>
+  
+
+
+  <h1>Conditions and Actions</h1>
+
+  <h2>General conditions</h2>
+    <input type = "text", name ="Light", placeholder= "LIGHT", required="required"/> (0.49-15.0)
+    <br><br>
+    <input type = "text", name ="RDSF", placeholder= "RDSFCOND", required="required"/> (0.49-15.0)
+    <br><br>
+    <input type = "text", name ="Vis", placeholder= "VISIBILITY", required="required"/> (1-6082)
+
+  <h2>Avoidable actions</h2>
+    <div class="row">
+      <div class="col-8">Was the driving aggressive?</div>
+      <div class="col-4">
+        <select class="form-select" name="AG" aria-label="Aggressive Driving">
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8">Was the driver drunk?</div>
+      <div class="col-4">
+        <select class="form-select" name="Alc" aria-label="Drunk and drive question">
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8">Was the driver speeding?</div>
+      <div class="col-4">
+        <select class="form-select" name="Speed" aria-label="Speeding question?">
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8">Did the driver break red signal?</div>
+      <div class="col-4">
+        <select class="form-select" name="Red" aria-label="Signal break question">
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </select>
+      </div>
+    </div>
+
+  <button type ="submit">PREDICT</button>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <input type ="reset" value="RESET" >
+</form>
+</div>
+</body>
+<footer>
+	<p>Created by Tejinder Singh. &copy; 2023</p>
+</footer>
+</html>

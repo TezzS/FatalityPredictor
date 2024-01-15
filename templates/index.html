@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Fatality Predictor</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .custom-container {
+      width: 800px;
+      border: 1px solid black;
+      margin: 5px;
+      padding: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div class="custom-container">
+    <h2 class="mb-3 text-center">Fatality Predictor</h2>
+    <form action="/result" method="post">
+      <h1>General Information</h1>
+      <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Place and Time
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" name ="lati" placeholder="LATITUDE" required>
+              </div>
+              <div class="mb-3">
+                <label for="longi" class="form-label">Longitude</label>
+                <input type="text" class="form-control" name="longi" placeholder="LONGITUDE" required>
+              </div>
+              
+              <div class="mb-3">
+                <div class="row">
+                  <div class="col-8">District:</div>
+                  <div class="col-4">
+                    <select class="form-select" name="DISTRICT" aria-label="District">
+                      <option value="Toronto and East York">Toronto and East York</option>
+                      <option value="Etobicoke York">Etobicoke York</option>
+                      <option value="North York">North York</option>
+                      <option value="Scarborough">Scarborough</option>
+                      <option value="Toronto East York">Toronto East York</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="mb-3">
+                <label for="Day" class="form-label">Day</label>
+                <input type="text" class="form-control" name="Day" placeholder="Day" required>
+              </div>
+              
+              <div class="mb-3">
+                <label for="DOW" class="form-label">Day of Week</label>
+                <input type="text" class="form-control" name="DOW" placeholder="Day of Week" required>
+              </div>
+              
+              <div class="mb-3">
+                <label for="Min" class="form-label">Minute</label>
+                <input type="text" class="form-control" name="Min" placeholder="MINUTE" required>
+              </div>
+              
+              <div class="mb-3">
+                <label for="Hr" class="form-label">Hour</label>
+                <input type="text" class="form-control" name="Hr" placeholder="HOUR" required>
+              </div>
+              
+              <div class="mb-3">
+                <label for="Mon" class="form-label">Month</label>
+                <input type="text" class="form-control" name="Mon" placeholder="MONTH" required>
+              </div>
+              
+              <div class="mb-3">
+                <label for="Year" class="form-label">Year</label>
+                <input type="text" class="form-control" name="Year" placeholder="YEAR" required>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Involvement Information
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <div class="row">
+                <div class="col-8">Automobile:</div>
+                <div class="col-4">
+                  <select class="form-select" name="Auto" aria-label="Automobile Option">
+                    <option value=0>No</option>
+                    <option value=1>Yes</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-8">Cyclist:</div>
+                <div class="col-4">
+                  <select class="form-select" name="Cycl" aria-label="Cyclist Option">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-8">Emergency Vehicle:</div>
+                <div class="col-4">
+                  <select class="form-select" name="EMERG_VEH" aria-label="Emergency Vehicle Option">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-8">Motorcycle:</div>
+                <div class="col-4">
+                  <select class="form-select" name="Mot" aria-label="Motorcycle Option">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-8">Passenger:</div>
+                <div class="col-4">
+                  <select class="form-select" name="Pass" aria-label="Passenger Option">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-8">Pedestrian:</div>
+                <div class="col-4">
+                  <select class="form-select" name="Ped" aria-label="Pedestrian Option">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-8">Was a specially able person involved?</div>
+                <div class="col-4">
+                  <select class="form-select" name="Dis" aria-label="Signal break question">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                  </select>
+                </div>
+              </div>
+            
+              <div class="row">
+                <div class="col-8">Transit City Vehicle:</div>
+                <div class="col-4">
+                  <select class="form-select" name="TRSN" aria-label="Transit City Vehicle Option">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-8">Truck:</div>
+                <div class="col-4">
+                  <select class="form-select" name="Tr" aria-label="Truck Option">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>  
+  
+    <h1>Conditions and Actions</h1>
+  
+    <h2>General conditions</h2>
+
+    <div class="row">
+      <div class="col-8">Light:</div>
+      <div class="col-4">
+        <select class="form-select" name="Light" aria-label="Light">
+          <option value="Daylight">Daylight</option>
+          <option value="Dark">Dark</option>
+          <option value="Dusk, artificial">Dusk, artificial</option>
+          <option value="Dark, artificial">Dark, artificial</option>
+          <option value="Dusk">Dusk</option>
+          <option value="Dawn, artificial">Dawn, artificial</option>
+          <option value="Dawn">Dawn</option>
+          <option value="Daylight, artificial">Daylight, artificial</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-8">Road Surface Condition:</div>
+      <div class="col-4">
+        <select class="form-select" name="RDSF" aria-label="Road Surface Condition">
+          <option value="Dry">Dry</option>
+          <option value="Wet">Wet</option>
+          <option value="Loose Snow">Loose Snow</option>
+          <option value="Ice">Ice</option>
+          <option value="Slush">Slush</option>
+          <option value="Other">Other</option>
+          <option value="Packed Snow">Packed Snow</option>
+          <option value="Loose Sand or Gravel">Loose Sand or Gravel</option>
+          <option value="Spilled liquid">Spilled liquid</option>
+        </select>
+      </div>
+    </div>
+  
+      <div class="row">
+        <div class="col-8">Visibility:</div>
+        <div class="col-4">
+          <select class="form-select" name="Vis" aria-label="Visibility">
+            <option value="Clear">Clear</option>
+            <option value="Rain">Rain</option>
+            <option value="Drifting Snow">Drifting Snow</option>
+            <option value="Snow">Snow</option>
+            <option value="Fog, Mist, Smoke, Dust">Fog, Mist, Smoke, Dust</option>
+            <option value="Other">Other</option>
+            <option value="Freezing Rain">Freezing Rain</option>
+            <option value="Strong wind">Strong wind</option>
+          </select>
+        </div>
+      </div>
+    
+    <h2>Avoidable actions</h2>
+      <div class="row">
+        <div class="col-8">Was the driving aggressive?</div>
+        <div class="col-4">
+          <select class="form-select" name="AG" aria-label="Aggressive Driving">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-8">Was the driver drunk?</div>
+        <div class="col-4">
+          <select class="form-select" name="Alc" aria-label="Drunk and drive question">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-8">Was the driver speeding?</div>
+        <div class="col-4">
+          <select class="form-select" name="Speed" aria-label="Speeding question?">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-8">Did the driver break red signal?</div>
+        <div class="col-4">
+          <select class="form-select" name="Red" aria-label="Signal break question">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+        </div>
+      </div>
+    <button type ="submit">PREDICT</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <input type ="reset" value="RESET" >
+  </form>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</html>
